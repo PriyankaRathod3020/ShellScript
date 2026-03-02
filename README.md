@@ -1,1 +1,1 @@
-This id the repository for the shell scripting projects
+This is the repository for the shell scripting projects
