@@ -37,7 +37,7 @@ function perform_rotation {
 
 		for bkp in "${backup_to_remove[0]}"
 		do
-			rm -f "${bkp}"
+			rm -f "${bkp}"  #-f flag is for force deletion
 		done
 	fi	
 }
