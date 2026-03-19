@@ -1,0 +1,27 @@
+Step 1: Use the hostnamectl Command
+  a. To create hostname in ubuntu - sudo hostnamectl set-hostname <your-hostname>
+  b. To verify hostname is created - hostname
+
+Step 2: Update your /etc/hosts File
+This step is critical. If you don't do this, many local applications (and the sudo command itself)
+will become very slow or throw errors because they can't find the "address" of the new name.
+  a. sudo nano /etc/hosts
+  b. Look for the line that maps to your local loopback address. It usually looks like this: 127.0.1.1   old-name
+  c. Change old-name to your new name: 127.0.1.1   your-new-name
+  d. Save and exit: Press Ctrl + O, then Enter, then Ctrl + X.
+
+Step 3: Refresh your Terminal
+Your command prompt (the text that looks like user@old-name:~$) won't change until you start a new session. You don't need to reboot your computer. Just:
+  a. Close the terminal and open a new one.
+  b. OR type: exec bash
+
+************ Below steps to perform only when you are using AWS EC2 instance **************************
+Step 3: Prevent AWS from Resetting the Name (Crucial)
+AWS uses a service called cloud-init that manages your instance. By default, it will revert your hostname to the private IP name every time you restart 
+the server unless you change this setting.
+  a. Open the cloud-init configuration file: sudo nano /etc/cloud/cloud.cfg
+  b. Find the line that says: preserve_hostname: false
+  c. Change it to: preserve_hostname: true
+  d. Save and exit (Ctrl+O, Enter, Ctrl+X).
+
+  
